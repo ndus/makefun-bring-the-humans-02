@@ -49,7 +49,7 @@ Three facts make the system trustworthy enough to bother with:
   program on Solana. Winners claim from that escrow; nobody has to chase an organiser for payment. The escrow code
   is open source: [github.com/makedotfun/prize-escrow](https://github.com/makedotfun/prize-escrow).
 - **Transcripts are the anti-cheat.** Anyone can copy code. The session logs your agent writes while it works are
-  much harder to fake, so each entry carries them, and the checks match them against the code line by line.
+  much harder to fake, so each entry carries them, and the checks match them against the code it produced.
 - **Skill beats luck, and speed breaks ties.** Scoring is published per bounty, and an exact tie goes to the entry
   that was received first — one more reason not to leave submitting to the last hour.
 
@@ -123,7 +123,8 @@ your score before you spend a submission on it.
    the bounty opened cannot be entered at all.
 2. **Give the project an OSI-approved license** — MIT is the usual choice.
 3. **If the kit has a `starter/` folder, start there.** It is a working entry that already meets the rules. Have
-   your agent make it genuinely yours; a starter submitted unchanged is both against the spirit and easy to spot.
+   your agent make it genuinely yours: the transcript checks can tell a starter's lines from your agent's, and an
+   unchanged starter is refused outright in some bounties — this guide's own bounty is one of them.
 4. **Let the agent write the files.** The transcript checks compare the sessions against the code, so work that
    happens inside the session counts, and code pasted in from elsewhere counts for much less. Writing some code by
    hand is allowed — it just isn't credited as your agent's work.
@@ -151,6 +152,10 @@ Before spending a submission, run the site's own checks locally:
 ```sh
 node cli/makefun.mjs check --kit . --repo ../my-entry --transcripts transcripts.tar.gz
 ```
+
+One honest exception: a few bounties — guide and referral bounties like the one this page is entered in — are never
+run at all. There is nothing to grade locally; the server checks the entry against the contest's rules instead.
+The flow below is otherwise the same.
 
 Then submit, either from the **Enter** form on the bounty page or from the kit:
 
